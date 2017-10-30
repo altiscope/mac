@@ -3,6 +3,7 @@
 help(){
 	printf "Usage:\n"
 	printf "\t atom\t\t: Install GitHub Atom editor.\n"
+	printf "\t awscli\t\t: Install AWS CLIGit.\n"
 	printf "\t brew\t\t: Install Homebrew.\n"
 	printf "\t docker\t\t: Install Docker and associated toolchain.\n"
 	printf "\t virtualbox\t: Install Homebrew.\n"
@@ -11,6 +12,10 @@ help(){
 
 install_atom(){
 	brew cask install atom
+}
+
+install_awscli(){
+	brew install awscli
 }
 
 install_brew(){
@@ -35,6 +40,9 @@ CMD=$1
 case "$CMD" in
 	atom)
 		install_atom
+		;;
+	awscli)
+		install_awscli
 		;;
 	brew)
 		install_brew
