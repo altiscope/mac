@@ -6,7 +6,9 @@ help(){
 	printf "\t awscli\t\t: Install AWS CLIGit.\n"
 	printf "\t brew\t\t: Install Homebrew.\n"
 	printf "\t docker\t\t: Install Docker and associated toolchain.\n"
-	printf "\t virtualbox\t: Install Homebrew.\n"
+	printf "\t minikube\t: Install Docker minikube.\n"
+	printf "\t vagrant\t: Install vagrant.\n"
+	printf "\t virtualbox\t: Install VirtualBox.\n"
 	printf "\t help\t\t: Show this help.\n"
 }
 
@@ -31,9 +33,20 @@ install_docker(){
 	brew cask install docker
 }
 
+install_minikube(){
+	brew cask install minikube
+}
+
+install_tree(){
+	brew install tree
+}
+
 install_vagrant(){
 	brew cask install vagrant
-	brew cask install atom
+}
+
+install_watch(){
+	brew install watch
 }
 
 CMD=$1
@@ -49,6 +62,12 @@ case "$CMD" in
 		;;
 	docker)
 		install_docker
+		;;
+	minikube)
+		install_minikube
+		;;
+	vagrant)
+		install_vagrant
 		;;
 	virtualbox)
 		./src/bin/virtualbox "${@:2}"
