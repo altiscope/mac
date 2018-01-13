@@ -9,7 +9,7 @@ Usage:
 	 awscli		: Install AWS CLI.
 	 brew		: Install Homebrew.
 	 docker		: Install Docker and associated toolchain.
-	 minikube	: Install Docker minikube.
+	 minikube	: Install minikube.
 	 vagrant	: Install vagrant.
 	 virtualbox	: Install VirtualBox.
 	 help		: Show this help.
