@@ -33,7 +33,6 @@ install_docker(){
 
 install_vagrant(){
 	brew cask install vagrant
-	brew cask install atom
 }
 
 CMD=$1
