@@ -6,6 +6,7 @@ help(){
 	printf "\t awscli\t\t: Install AWS CLIGit.\n"
 	printf "\t brew\t\t: Install Homebrew.\n"
 	printf "\t docker\t\t: Install Docker and associated toolchain.\n"
+	printf "\t vagrant\t: Install vagrant.\n"
 	printf "\t virtualbox\t: Install Homebrew.\n"
 	printf "\t help\t\t: Show this help.\n"
 }
@@ -48,6 +49,9 @@ case "$CMD" in
 		;;
 	docker)
 		install_docker
+		;;
+	vagrant)
+		install_vagrant
 		;;
 	virtualbox)
 		./src/bin/virtualbox "${@:2}"
