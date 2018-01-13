@@ -6,9 +6,11 @@ help(){
 	printf "\t awscli\t\t: Install AWS CLIGit.\n"
 	printf "\t brew\t\t: Install Homebrew.\n"
 	printf "\t docker\t\t: Install Docker and associated toolchain.\n"
-	printf "\t minikube\t: Install Docker minikube.\n"
+	printf "\t minikube\t: Install minikube.\n"
+	printf "\t tree\t\t: Install tree.\n"
 	printf "\t vagrant\t: Install vagrant.\n"
 	printf "\t virtualbox\t: Install VirtualBox.\n"
+	printf "\t watch\t\t: Install watch.\n"
 	printf "\t help\t\t: Show this help.\n"
 }
 
@@ -66,11 +68,17 @@ case "$CMD" in
 	minikube)
 		install_minikube
 		;;
+	tree)
+		install_tree
+		;;
 	vagrant)
 		install_vagrant
 		;;
 	virtualbox)
 		./src/bin/virtualbox "${@:2}"
+		;;
+	watch)
+		install_watch
 		;;
 	* | -h | help)
 		help
