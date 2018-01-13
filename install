@@ -1,6 +1,6 @@
 #!/bin/bash
 
-help(){
+usage(){
 	printf "Usage:\n"
 	printf "\t atom\t\t: Install GitHub Atom editor.\n"
 	printf "\t awscli\t\t: Install AWS CLIGit.\n"
@@ -14,12 +14,28 @@ help(){
 	printf "\t help\t\t: Show this help.\n"
 }
 
+# param $1 - Command name
+# param $2 - Installation command
+install_if_doesnt_exists(){
+	TOOL=$1
+	CMD=$2
+	type $TOOL > /dev/null 2>&1
+	if [[ "$?" == "1" ]]; then
+		printf "Installing ${TOOL} ...\n"
+		echo "$CMD" | /bin/bash
+	else
+		printf "${TOOL} is already installed.\n"
+	fi
+}
+
 install_atom(){
-	brew cask install atom
+	CMD="brew cask install atom"
+	install_if_doesnt_exists "atom" "$CMD"
 }
 
 install_awscli(){
-	brew install awscli
+	CMD="brew install awscli"
+	install_if_doesnt_exists "aws" "$CMD"
 }
 
 install_brew(){
@@ -32,23 +48,28 @@ install_brew(){
 
 install_docker(){
 	# See https://stackoverflow.com/questions/40523307/brew-install-docker-does-not-include-docker-engine
-	brew cask install docker
+	CMD="brew cask install docker"
+	install_if_doesnt_exists "docker" "$CMD"
 }
 
 install_minikube(){
-	brew cask install minikube
+	CMD="brew cask install minikube"
+	install_if_doesnt_exists "minikube" "$CMD"
 }
 
 install_tree(){
-	brew install tree
+	CMD="brew install tree"
+	install_if_doesnt_exists "tree" "$CMD"
 }
 
 install_vagrant(){
-	brew cask install vagrant
+	CMD="brew cask install vagrant"
+	install_if_doesnt_exists "vagrant" "$CMD"
 }
 
 install_watch(){
-	brew install watch
+	CMD="brew install watch"
+	install_if_doesnt_exists "watch" "$CMD"
 }
 
 CMD=$1
@@ -81,6 +102,6 @@ case "$CMD" in
 		install_watch
 		;;
 	* | -h | help)
-		help
+		usage
 		;;
 esac
