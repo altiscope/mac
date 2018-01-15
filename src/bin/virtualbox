@@ -15,13 +15,20 @@ fi
 if [ ! -z "$TARGET_MINOR" ]; then
 	VERSION_MINOR="$TARGET_MINOR"
 fi
-VIRTUALBOX_URL=http://download.virtualbox.org/virtualbox/${VERSION_MAJOR}/VirtualBox-${VERSION_MAJOR}-${VERSION_MINOR}-OSX.dmg
-TMP_DMG_FILE="/tmp/virtualbox-${VERSION_MAJOR}-${VERSION_MINOR}.dmg"
 
-echo "Downloading Virtualbox version=${VERSION_MAJOR}-${VERSION_MINOR}"
-curl -o "${TMP_DMG_FILE}" "${VIRTUALBOX_URL}"
-hdid "${TMP_DMG_FILE}"
-echo "Installing virtualbox package. Will prompt for sudo"
-sudo installer -verbose -pkg /Volumes/VirtualBox/VirtualBox.pkg -target /
-hdiutil detach /Volumes/VirtualBox
-rm "${TMP_DMG_FILE}"
+type VBoxManage > /dev/null 2>&1
+if [[ "$?" == "0" ]]; then
+	printf "VirtualBox is already installed.\n"
+else
+	printf "Installing VirtualBox ...\n"
+	VIRTUALBOX_URL=http://download.virtualbox.org/virtualbox/${VERSION_MAJOR}/VirtualBox-${VERSION_MAJOR}-${VERSION_MINOR}-OSX.dmg
+	TMP_DMG_FILE="/tmp/virtualbox-${VERSION_MAJOR}-${VERSION_MINOR}.dmg"
+
+	echo "Downloading Virtualbox version=${VERSION_MAJOR}-${VERSION_MINOR}"
+	curl -o "${TMP_DMG_FILE}" "${VIRTUALBOX_URL}"
+	hdid "${TMP_DMG_FILE}"
+	echo "Installing virtualbox package. Will prompt for sudo ..."
+	sudo installer -verbose -pkg /Volumes/VirtualBox/VirtualBox.pkg -target /
+	hdiutil detach /Volumes/VirtualBox
+	rm "${TMP_DMG_FILE}"
+fi
