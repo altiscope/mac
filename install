@@ -11,6 +11,7 @@ usage(){
 	printf "\t vagrant\t: Install vagrant.\n"
 	printf "\t virtualbox\t: Install VirtualBox.\n"
 	printf "\t watch\t\t: Install watch.\n"
+	printf "\t xcode\t\t: Install Xcode.\n"
 	printf "\t help\t\t: Show this help.\n"
 }
 
@@ -72,6 +73,11 @@ install_watch(){
 	install_if_doesnt_exists "watch" "$CMD"
 }
 
+install_xcode(){
+	CMD="xcode-select --install"
+	install_if_doesnt_exists "xcode-select" "$CMD"
+}
+
 CMD=$1
 case "$CMD" in
 	atom)
@@ -100,6 +106,9 @@ case "$CMD" in
 		;;
 	watch)
 		install_watch
+		;;
+	xcode)
+		install_xcode
 		;;
 	* | -h | help)
 		usage

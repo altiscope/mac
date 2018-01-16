@@ -56,3 +56,8 @@ load helper
 	run watch --version
 	[ "$status" -eq 0 ]
 }
+
+@test "XCODE: Xcode installed." {
+	run xcode-select --version
+	[ "$status" -eq 0 ]
+}
